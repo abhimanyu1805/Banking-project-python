@@ -1,0 +1,77 @@
+class User:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+
+    def show_details(self):
+        return f"thaankyou,{self.age} year old,{self.name.title()}"    
+#creating bank account    
+class Bank(User):
+    total_withdrawsdeposits=0
+    total_withdraws=0
+
+    def __init__(self,name,age,balance):
+        super().__init__(name,age)                #doesnt need self coz its pairing from user class using super
+
+        self.balance=balance
+        
+    def show_info(self):
+        return f"{self.name} has balance of {round(self.balance,2)}" 
+
+    def deposits(self):
+        dp=float(input(f"{self.name.title()}, plz enter how much you want to deposit"))  
+        print("thankyou") 
+        self.total_deposits=0               
+        self.balance+=dp
+        self.total_deposits+=1
+        return f"your balance is {round(self.balance,2)}" 
+
+    def withdraws(self):
+        wd=float(input(f"{self.name.title()} how much you want to withdraw"))   
+        if wd>self.balance:
+            return "above limits" 
+        else:
+            return "thanks for withdrawing"   
+            self.balance -= wd
+            self.total_withdraws+=1    
+            return f"your balance is now{round(self.balance,2)}"       
+
+def options(user_two):
+        print("thanks for creating a bank account")    
+        print("choose")    
+        while True:
+            option_choice=int(input("1) see balance \n 2) withdraws \n 3) Deposits \n 4)See total withdraws \n 5)See total Deposits \n 6)QUIT \n"))
+            if option_choice ==1:
+                print(user_one.show_info())
+                if option_choice==1 and user_two!=None:
+                    print(user_two.show_info())
+            elif option_choice==2:
+                print(user_one_bank.withdraws()) 
+                if option_choice==2 and user_two!=None:
+                    wd=input(f"({user_two.name} would like to withraw. YES OR NO") 
+                    if wd.lower()=="yes":
+                        print(user_two.withdraws())
+
+            elif option_choice==3:
+                print(user_one_bank.deposits())     
+                if option_choice ==3 and user_two !=None:
+                    dep=input(f"{user_two.name} do you want to deposit")     
+                    if dep.lower() == yes:
+                        print (user_two_bank.deposit()) 
+
+            elif option_choice == 4:
+                print(f"thre hav ebeen {user_one_bank.total_withdraws}")  
+                if option_choice==4 and user_two!=None:
+                    print(f"there have been {user_two_bank.total_withdraws}")     
+
+            elif option_choice == 5:
+                print(f"there have been {user_one_bank.total_deposits}") 
+                if option_choice==5 and user_two!=None:
+                    print(f"there have been {user_two_bank.total_deposits}")   
+
+            elif option_choice == 6:
+                print("thank you")
+                return False
+                break  
+            else:
+                print("please choose a number from 1-6")  
